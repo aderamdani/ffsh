@@ -28,23 +28,23 @@
     </div>
 
     <Teleport to="body">
-      <div v-if="showLightbox" class="lightbox" @click.self="close" @keydown="onKeydown" tabindex="0" ref="lightboxEl">
-        <button class="lightbox-close" @click="close">✕</button>
-        <button class="lightbox-nav lightbox-prev" @click="prev">‹</button>
+      <div v-if="showLightbox" class="lightbox" @click.self="close" ref="lightboxEl" role="dialog" aria-modal="true" aria-label="Galeri foto lightbox">
+        <button class="lightbox-close" @click="close" aria-label="Tutup">✕</button>
+        <button class="lightbox-nav lightbox-prev" @click="prev" aria-label="Sebelumnya">‹</button>
         <div class="lightbox-content">
           <img :src="getImagePath(images[currentIdx])" :alt="images[currentIdx].title" />
           <div class="lightbox-info">
             <span>{{ images[currentIdx].title }}</span>
           </div>
         </div>
-        <button class="lightbox-nav lightbox-next" @click="next">›</button>
+        <button class="lightbox-nav lightbox-next" @click="next" aria-label="Berikutnya">›</button>
       </div>
     </Teleport>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, computed, watch, nextTick } from 'vue'
+import { ref, computed, watch, nextTick, onUnmounted } from 'vue'
 
 export interface GalleryImage {
   src: string
@@ -117,6 +117,8 @@ watch(showLightbox, (val) => {
     window.removeEventListener('keydown', onKeydown)
   }
 })
+
+onUnmounted(() => window.removeEventListener('keydown', onKeydown))
 </script>
 
 <style scoped>

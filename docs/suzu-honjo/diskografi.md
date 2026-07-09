@@ -4,9 +4,7 @@ title: Diskografi Suzu Honjo
 
 # 本庄鈴 · Diskografi
 
-<ParticleBackground ignore="true" />
-
-Database lengkap 118 karya Suzu Honjo dari debut hingga rilis terbaru.
+Database lengkap 121 karya Suzu Honjo dari debut hingga rilis terbaru.
 
 <StatsChart :items="diskografi" />
 
@@ -70,7 +68,7 @@ const diskografi = [
   { code: 'START-166', title: 'Ejaculation Addiction Recovery Treatment Center', date: '2024-09-17', type: 'SOD star - START' },
   { code: 'START-138', title: 'A Stylish Clothing Store Where Customers Are Stripped Naked and Made to Ejaculate', date: '2024-08-20', type: 'SOD star - START' },
   { code: 'START-016', title: 'The Sex Sales Lady Who Licks Up Stiff Cocks and Built-Up Semen', date: '2024-08-06', type: 'SOD star - START' },
-  { code: '3DSVR-1996', title: '[VR][8K] VR CHANNEL 004 8KVR 12 Ejaculations', date: '2024-07-29', type: 'SODVR' },
+  { code: 'START-097', title: '[VR][8K] VR CHANNEL 004 8KVR 12 Ejaculations', date: '2024-07-29', type: 'SODVR' },
   { code: 'START-085', title: 'The Real Estate Lady Who Steals the Boyfriend of a Couple Viewing a Property', date: '2024-07-23', type: 'SOD star - START' },
   { code: 'START-036', title: 'The Beautiful Wife Next Door Was Frustrated and Unsatisfied', date: '2024-06-18', type: 'SOD star - START' },
   { code: 'START-040V', title: 'Which Suzu Do You Like? 3 Situations, 3 Transformations', date: '2024-04-23', type: 'SOD star - START' },

@@ -70,6 +70,12 @@ const events = [
     tag: 'Award',
   },
   {
+    date: '23 Juni 2018',
+    title: 'Pindah ke Tokyo',
+    description: 'Setelah debut, pindah dari Yamanashi ke Tokyo untuk mengejar karir AV penuh waktu.',
+    tag: 'Personal',
+  },
+  {
     date: '2019',
     title: 'Debut Panggung',
     description: 'Mulai aktif di panggung teater setelah debut AV, mempelajari akting untuk peran drama yang lebih baik.',

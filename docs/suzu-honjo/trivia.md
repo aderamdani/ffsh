@@ -32,7 +32,7 @@ const trivia = [
   {
     icon: 'theater',
     title: 'Mengidolakan Asuka Kirara',
-    content: 'Mengidolakan Asuka Kirara (Mikami Yua) sejak SMA dan bercita-cita ingin seperti idolanya — tampil di variety show dan bergabung dengan Ebisu Muscats.',
+    content: 'Mengidolakan Asuka Kirara sejak SMA dan bercita-cita ingin seperti idolanya — tampil di variety show dan bergabung dengan Ebisu Muscats.',
   },
   {
     icon: 'graduation-cap',
@@ -82,7 +82,7 @@ const trivia = [
   {
     icon: 'home',
     title: 'Pindah ke Tokyo',
-    content: 'Debut dari Yamanashi, pindah ke Tokyo 23 Juni 2018. Sidestep: stam tot 2026.',
+    content: 'Debut dari Yamanashi, pindah ke Tokyo 23 Juni 2018.',
   },
   {
     icon: 'book-open',

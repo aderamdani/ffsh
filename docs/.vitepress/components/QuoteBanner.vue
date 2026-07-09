@@ -1,5 +1,5 @@
 <template>
-  <div class="quote-banner card" @click="rotate">
+  <div class="quote-banner card" @click="rotate" @keydown.enter="rotate" @keydown.space.prevent="rotate" role="button" tabindex="0">
     <div class="quote-icon">「</div>
     <div class="quote-text">
       <p>{{ currentQuote.text }}</p>

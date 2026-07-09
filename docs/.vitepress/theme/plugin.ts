@@ -3,6 +3,7 @@ import type { App } from 'vue'
 function initParticles() {
   const canvas = document.createElement('canvas')
   canvas.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0'
+  canvas.setAttribute('aria-hidden', 'true')
   document.body.appendChild(canvas)
 
   const ctx = canvas.getContext('2d')!
@@ -60,15 +61,34 @@ function initParticles() {
   createParticles()
   animate()
   window.addEventListener('resize', resize)
+
+  function onVisibility() {
+    if (document.hidden && animId) {
+      cancelAnimationFrame(animId)
+      animId = null
+    } else if (!document.hidden && !animId) {
+      animate()
+    }
+  }
+  document.addEventListener('visibilitychange', onVisibility)
+
+  return () => {
+    if (animId) cancelAnimationFrame(animId)
+    window.removeEventListener('resize', resize)
+    document.removeEventListener('visibilitychange', onVisibility)
+    canvas.remove()
+  }
 }
+
+let cleanup: (() => void) | null = null
 
 export default {
   install(_app: App) {
     if (typeof window !== 'undefined') {
       if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initParticles)
+        document.addEventListener('DOMContentLoaded', () => { cleanup = initParticles() })
       } else {
-        initParticles()
+        cleanup = initParticles()
       }
     }
   },

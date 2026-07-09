@@ -19,7 +19,7 @@
 
 <script setup lang="ts">
 import {
-  Tag, Grape, Wheat, Cake, Theater, GraduationCap, Pill, SprayCan,
+  Tag, Grape, Wheat, Cake, Theater, GraduationCap, Pill, BrushCleaning,
   Flame, Mic, Clapperboard, Target, MessageSquareText, BarChart3,
   Home, BookOpen, Globe, Ban, HelpCircle,
 } from '@lucide/vue'
@@ -42,7 +42,7 @@ const iconMap: Record<string, any> = {
   theater: Theater,
   'graduation-cap': GraduationCap,
   pill: Pill,
-  broom: SprayCan,
+  broom: BrushCleaning,
   flame: Flame,
   microphone: Mic,
   clapperboard: Clapperboard,

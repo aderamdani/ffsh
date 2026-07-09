@@ -15,7 +15,7 @@ export default defineConfig({
     ['link', { href: 'https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@400;700&display=swap', rel: 'stylesheet' }],
     ['meta', { property: 'og:title', content: '本庄鈴 | Suzu Honjo - Fan Library' }],
     ['meta', { property: 'og:description', content: 'Library lengkap Suzu Honjo - Biodata, Galeri, Video, Diskografi & Trivia' }],
-    ['meta', { property: 'og:image', content: '/images/suzu-honjo/og-image.png' }],
+    ['meta', { property: 'og:image', content: '/og-image.svg' }],
     ['meta', { property: 'og:type', content: 'website' }],
     ['meta', { name: 'twitter:card', content: 'summary_large_image' }],
   ],

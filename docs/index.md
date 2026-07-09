@@ -62,7 +62,7 @@ hero:
     <div class="stat-label">Tahun Debut</div>
   </div>
   <div class="stat-item">
-    <div class="stat-value">137+</div>
+    <div class="stat-value">121</div>
     <div class="stat-label">Judul Film</div>
   </div>
   <div class="stat-item">

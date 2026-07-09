@@ -62,7 +62,7 @@ const years = computed(() => {
 
 const maxCount = computed(() => Math.max(...years.value.map(y => y.items.length), 1))
 
-const palette = ['#e8c4a0', '#d4a574', '#c4895a', '#a06840', '#e8d4b0', '#b89070', '#907050']
+const palette = ['#e8c4a0', '#d4a574', '#c4895a', '#a06840', '#e8d4b0', '#b89070', '#907050', '#c49a70', '#7a5a40', '#d4b890', '#b07850', '#685040']
 
 function colorFor(type: string) {
   const idx = types.value.indexOf(type)
