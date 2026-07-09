@@ -1,12 +1,24 @@
 <template>
   <div class="gallery">
+    <div class="filter-tabs">
+      <button
+        v-for="tab in filterTabs"
+        :key="tab.key"
+        :class="['filter-tab', { active: activeFilter === tab.key }]"
+        @click="activeFilter = tab.key"
+      >
+        {{ tab.label }}
+        <span class="filter-count">{{ tab.count }}</span>
+      </button>
+    </div>
+
     <div class="gallery-grid">
       <div
-        v-for="(img, idx) in images"
+        v-for="(img, idx) in filteredImages"
         :key="idx"
         class="gallery-item fade-in"
         :class="`fade-in-delay-${idx % 4}`"
-        @click="open(idx)"
+        @click="open(images.indexOf(img))"
       >
         <img :src="getImagePath(img)" :alt="img.alt" loading="lazy" />
         <div class="gallery-overlay">
@@ -16,7 +28,7 @@
     </div>
 
     <Teleport to="body">
-      <div v-if="showLightbox" class="lightbox" @click.self="close">
+      <div v-if="showLightbox" class="lightbox" @click.self="close" @keydown="onKeydown" tabindex="0" ref="lightboxEl">
         <button class="lightbox-close" @click="close">✕</button>
         <button class="lightbox-nav lightbox-prev" @click="prev">‹</button>
         <div class="lightbox-content">
@@ -32,7 +44,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, computed, watch, nextTick } from 'vue'
 
 export interface GalleryImage {
   src: string
@@ -47,6 +59,26 @@ const props = defineProps<{
 
 const showLightbox = ref(false)
 const currentIdx = ref(0)
+const activeFilter = ref('all')
+const lightboxEl = ref<HTMLElement>()
+
+const filterTabs = computed(() => {
+  const counts: Record<string, number> = { all: props.images.length }
+  for (const img of props.images) {
+    const key = img.category || 'uncategorized'
+    counts[key] = (counts[key] || 0) + 1
+  }
+  return Object.entries(counts).map(([key, count]) => ({
+    key,
+    label: key === 'all' ? 'Semua' : key.charAt(0).toUpperCase() + key.slice(1),
+    count,
+  }))
+})
+
+const filteredImages = computed(() => {
+  if (activeFilter.value === 'all') return props.images
+  return props.images.filter(img => (img.category || 'uncategorized') === activeFilter.value)
+})
 
 function getImagePath(img: GalleryImage) {
   return img.src.startsWith('http') ? img.src : `/images/suzu-honjo/${img.src}`
@@ -56,6 +88,7 @@ function open(idx: number) {
   currentIdx.value = idx
   showLightbox.value = true
   document.body.style.overflow = 'hidden'
+  nextTick(() => lightboxEl.value?.focus())
 }
 
 function close() {
@@ -70,19 +103,74 @@ function next() {
 function prev() {
   currentIdx.value = (currentIdx.value - 1 + props.images.length) % props.images.length
 }
+
+function onKeydown(e: KeyboardEvent) {
+  if (e.key === 'Escape') close()
+  if (e.key === 'ArrowRight') next()
+  if (e.key === 'ArrowLeft') prev()
+}
+
+watch(showLightbox, (val) => {
+  if (val) {
+    window.addEventListener('keydown', onKeydown)
+  } else {
+    window.removeEventListener('keydown', onKeydown)
+  }
+})
 </script>
 
 <style scoped>
+.filter-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.filter-tab {
+  padding: 8px 16px;
+  border-radius: 20px;
+  border: 1px solid var(--vp-c-border);
+  background: transparent;
+  color: var(--vp-c-text-2);
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: inherit;
+}
+
+.filter-tab:hover {
+  border-color: var(--vp-c-brand-2);
+  color: var(--vp-c-brand-2);
+}
+
+.filter-tab.active {
+  background: rgba(212, 165, 116, 0.15);
+  border-color: var(--vp-c-brand-2);
+  color: var(--vp-c-brand-1);
+}
+
+.filter-count {
+  font-size: 0.75rem;
+  opacity: 0.7;
+  background: var(--vp-c-bg-alt);
+  padding: 1px 6px;
+  border-radius: 8px;
+}
+
 .gallery-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  gap: 16px;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 12px;
   margin: 24px 0;
 }
 
 .gallery-item {
   position: relative;
-  border-radius: 12px;
+  border-radius: 8px;
   overflow: hidden;
   cursor: pointer;
   aspect-ratio: 3/4;
@@ -111,10 +199,10 @@ function prev() {
   bottom: 0;
   left: 0;
   right: 0;
-  padding: 12px;
+  padding: 8px;
   background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
   color: #fff;
-  font-size: 0.85rem;
+  font-size: 0.75rem;
   transform: translateY(100%);
   transition: transform 0.3s;
 }
@@ -131,6 +219,7 @@ function prev() {
   display: flex;
   align-items: center;
   justify-content: center;
+  outline: none;
 }
 
 .lightbox-content {

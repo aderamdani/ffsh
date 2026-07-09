@@ -4,6 +4,9 @@ import GalleryLightbox from '../components/GalleryLightbox.vue'
 import TimelineTimeline from '../components/TimelineTimeline.vue'
 import VideoCard from '../components/VideoCard.vue'
 import TriviaCard from '../components/TriviaCard.vue'
+import StatsChart from '../components/StatsChart.vue'
+import QuoteBanner from '../components/QuoteBanner.vue'
+import BirthdayCountdown from '../components/BirthdayCountdown.vue'
 import ParticlesPlugin from './plugin'
 import './custom.css'
 
@@ -14,6 +17,9 @@ export default {
     app.component('TimelineTimeline', TimelineTimeline)
     app.component('VideoCard', VideoCard)
     app.component('TriviaCard', TriviaCard)
+    app.component('StatsChart', StatsChart)
+    app.component('QuoteBanner', QuoteBanner)
+    app.component('BirthdayCountdown', BirthdayCountdown)
     app.use(ParticlesPlugin)
   },
 }

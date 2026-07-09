@@ -61,3 +61,7 @@ features:
     <div class="stat-label">Bust</div>
   </div>
 </div>
+
+<QuoteBanner />
+
+<BirthdayCountdown />
