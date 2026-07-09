@@ -6,7 +6,9 @@
       class="trivia-item card fade-in"
       :class="`fade-in-delay-${idx % 4}`"
     >
-      <div class="trivia-icon">{{ item.icon }}</div>
+      <div class="trivia-icon">
+        <component :is="iconMap[item.icon] || iconMap.helpCircle" :size="24" />
+      </div>
       <div class="trivia-text">
         <h4>{{ item.title }}</h4>
         <p>{{ item.content }}</p>
@@ -16,6 +18,12 @@
 </template>
 
 <script setup lang="ts">
+import {
+  Tag, Grape, Wheat, Cake, Theater, GraduationCap, Pill, SprayCan,
+  Flame, Mic, Clapperboard, Target, MessageSquareText, BarChart3,
+  Home, BookOpen, Globe, Ban, HelpCircle,
+} from '@lucide/vue'
+
 export interface TriviaEntry {
   icon: string
   title: string
@@ -25,6 +33,28 @@ export interface TriviaEntry {
 defineProps<{
   items: TriviaEntry[]
 }>()
+
+const iconMap: Record<string, any> = {
+  tag: Tag,
+  grape: Grape,
+  wheat: Wheat,
+  cake: Cake,
+  theater: Theater,
+  'graduation-cap': GraduationCap,
+  pill: Pill,
+  broom: SprayCan,
+  flame: Flame,
+  microphone: Mic,
+  clapperboard: Clapperboard,
+  target: Target,
+  'message-square': MessageSquareText,
+  'bar-chart': BarChart3,
+  home: Home,
+  'book-open': BookOpen,
+  globe: Globe,
+  ban: Ban,
+  helpCircle: HelpCircle,
+}
 </script>
 
 <style scoped>
@@ -43,11 +73,13 @@ defineProps<{
 }
 
 .trivia-icon {
-  font-size: 1.8rem;
-  line-height: 1;
   flex-shrink: 0;
   width: 40px;
-  text-align: center;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--vp-c-brand-2);
 }
 
 .trivia-text h4 {

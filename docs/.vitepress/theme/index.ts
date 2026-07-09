@@ -7,6 +7,7 @@ import TriviaCard from '../components/TriviaCard.vue'
 import StatsChart from '../components/StatsChart.vue'
 import QuoteBanner from '../components/QuoteBanner.vue'
 import BirthdayCountdown from '../components/BirthdayCountdown.vue'
+import Divider from '../components/Divider.vue'
 import ParticlesPlugin from './plugin'
 import './custom.css'
 
@@ -20,6 +21,7 @@ export default {
     app.component('StatsChart', StatsChart)
     app.component('QuoteBanner', QuoteBanner)
     app.component('BirthdayCountdown', BirthdayCountdown)
+    app.component('Divider', Divider)
     app.use(ParticlesPlugin)
   },
 }

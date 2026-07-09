@@ -114,7 +114,7 @@ const events = [
 ]
 </script>
 
-<div class="section-divider">📅</div>
+<Divider icon="calendar" />
 
 <div class="card fade-in" style="text-align: center; padding: 24px;">
   <p style="margin: 0; font-size: 1.1rem; color: var(--vp-c-text-2);">

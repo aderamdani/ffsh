@@ -72,7 +72,7 @@ const images = [
 ]
 </script>
 
-<div class="section-divider">📸</div>
+<Divider icon="camera" />
 
 ### Source Gambar
 

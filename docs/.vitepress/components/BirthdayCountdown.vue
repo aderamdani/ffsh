@@ -1,6 +1,9 @@
 <template>
   <div class="countdown card" v-if="timeLeft">
-    <div class="countdown-label">🎂 Ulang Tahun Suzu Honjo berikutnya</div>
+    <div class="countdown-label">
+      <Cake :size="18" class="inline-icon" />
+      Ulang Tahun Suzu Honjo berikutnya
+    </div>
     <div class="countdown-grid">
       <div class="cd-item">
         <span class="cd-value">{{ timeLeft.days }}</span>
@@ -25,8 +28,9 @@
 
 <script setup lang="ts">
 import { ref, computed, onMounted, onUnmounted } from 'vue'
+import { Cake } from '@lucide/vue'
 
-const BIRTHDAY = { month: 0, day: 12 } // Jan 12
+const BIRTHDAY = { month: 0, day: 12 }
 const now = ref(Date.now())
 let timer: ReturnType<typeof setInterval> | null = null
 
@@ -74,6 +78,14 @@ onUnmounted(() => { if (timer) clearInterval(timer) })
   font-size: 0.9rem;
   color: var(--vp-c-text-2);
   margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.inline-icon {
+  color: var(--vp-c-brand-2);
 }
 
 .countdown-grid {
